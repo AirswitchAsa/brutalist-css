@@ -1,0 +1,304 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =============================================================================
+   BRUTALIST CSS LAYER
+   A raw, honest, and unpolished design system
+   ============================================================================= */
+
+@layer base {
+  :root {
+    /* Brutalist color palette - high contrast, raw */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --card: 0 0% 98%;
+    --card-foreground: 0 0% 0%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
+    --primary: 0 0% 0%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 90%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 0 0% 95%;
+    --muted-foreground: 0 0% 40%;
+    --accent: 45 100% 50%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 0%;
+    --input: 0 0% 0%;
+    --ring: 0 0% 0%;
+    --radius: 0px;
+  }
+
+  .dark {
+    --background: 0 0% 5%;
+    --foreground: 0 0% 95%;
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 95%;
+    --popover: 0 0% 5%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 0 0% 95%;
+    --primary-foreground: 0 0% 5%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 95%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 60%;
+    --accent: 45 100% 50%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 95%;
+    --input: 0 0% 95%;
+    --ring: 0 0% 95%;
+  }
+
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* =============================================================================
+   BRUTALIST COMPONENT OVERRIDES
+   ============================================================================= */
+
+@layer components {
+  /* Brutalist Button Styles */
+  .brutalist-btn {
+    @apply relative inline-flex items-center justify-center px-6 py-3;
+    @apply font-mono font-bold uppercase tracking-wider;
+    @apply border-4 border-black bg-white text-black;
+    @apply transition-all duration-100;
+    box-shadow: 4px 4px 0 0 hsl(var(--foreground));
+  }
+
+  .brutalist-btn:hover {
+    box-shadow: 2px 2px 0 0 hsl(var(--foreground));
+    transform: translate(2px, 2px);
+  }
+
+  .brutalist-btn:active {
+    box-shadow: 0 0 0 0 hsl(var(--foreground));
+    transform: translate(4px, 4px);
+  }
+
+  .brutalist-btn-primary {
+    @apply bg-black text-white;
+    box-shadow: 4px 4px 0 0 hsl(var(--accent));
+  }
+
+  .brutalist-btn-primary:hover {
+    box-shadow: 2px 2px 0 0 hsl(var(--accent));
+  }
+
+  .brutalist-btn-destructive {
+    @apply border-red-600 bg-red-600 text-white;
+    box-shadow: 4px 4px 0 0 #991b1b;
+  }
+
+  /* Brutalist Input Styles */
+  .brutalist-input {
+    @apply w-full px-4 py-3;
+    @apply font-mono text-base;
+    @apply border-4 border-black bg-white;
+    @apply focus:outline-none;
+    box-shadow: 4px 4px 0 0 hsl(var(--foreground));
+  }
+
+  .brutalist-input:focus {
+    box-shadow: 2px 2px 0 0 hsl(var(--foreground));
+    transform: translate(2px, 2px);
+  }
+
+  .brutalist-input::placeholder {
+    @apply text-gray-500 uppercase tracking-wide;
+  }
+
+  /* Brutalist Card Styles */
+  .brutalist-card {
+    @apply p-6;
+    @apply border-4 border-black bg-white;
+    box-shadow: 8px 8px 0 0 hsl(var(--foreground));
+  }
+
+  .brutalist-card-header {
+    @apply mb-4 pb-4 border-b-4 border-black;
+  }
+
+  .brutalist-card-title {
+    @apply font-mono text-2xl font-black uppercase tracking-tight;
+  }
+
+  .brutalist-card-description {
+    @apply mt-2 font-mono text-sm text-gray-600 uppercase tracking-wide;
+  }
+
+  /* Brutalist Terminal/Code Block */
+  .brutalist-terminal {
+    @apply p-6;
+    @apply font-mono text-sm;
+    @apply border-4 border-black bg-black text-green-400;
+    box-shadow: 8px 8px 0 0 #166534;
+  }
+
+  .brutalist-terminal-header {
+    @apply flex items-center gap-2 mb-4 pb-2 border-b border-green-800;
+  }
+
+  .brutalist-terminal-dot {
+    @apply w-3 h-3 rounded-full;
+  }
+
+  /* Brutalist Label */
+  .brutalist-label {
+    @apply font-mono text-sm font-bold uppercase tracking-wider;
+  }
+
+  /* Brutalist Badge */
+  .brutalist-badge {
+    @apply inline-flex items-center px-3 py-1;
+    @apply font-mono text-xs font-bold uppercase tracking-wider;
+    @apply border-2 border-black bg-white;
+    box-shadow: 2px 2px 0 0 hsl(var(--foreground));
+  }
+
+  .brutalist-badge-accent {
+    @apply bg-yellow-400;
+  }
+
+  /* Brutalist Dialog */
+  .brutalist-dialog-overlay {
+    @apply fixed inset-0 bg-black/80;
+  }
+
+  .brutalist-dialog-content {
+    @apply fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2;
+    @apply w-full max-w-lg p-8;
+    @apply border-4 border-black bg-white;
+    box-shadow: 12px 12px 0 0 hsl(var(--foreground));
+  }
+
+  /* Brutalist Tabs */
+  .brutalist-tabs-list {
+    @apply flex border-4 border-black border-b-0;
+  }
+
+  .brutalist-tabs-trigger {
+    @apply flex-1 px-6 py-3;
+    @apply font-mono font-bold uppercase tracking-wider;
+    @apply border-r-4 border-black last:border-r-0;
+    @apply bg-gray-100 text-black;
+    @apply transition-colors;
+  }
+
+  .brutalist-tabs-trigger[data-state="active"] {
+    @apply bg-black text-white;
+  }
+
+  .brutalist-tabs-content {
+    @apply p-6;
+    @apply border-4 border-black;
+  }
+
+  /* Brutalist Switch */
+  .brutalist-switch {
+    @apply relative inline-flex h-8 w-14;
+    @apply border-4 border-black bg-white;
+    @apply cursor-pointer;
+  }
+
+  .brutalist-switch[data-state="checked"] {
+    @apply bg-black;
+  }
+
+  .brutalist-switch-thumb {
+    @apply block h-5 w-5;
+    @apply border-2 border-black bg-white;
+    @apply transition-transform;
+    transform: translateX(2px);
+  }
+
+  .brutalist-switch[data-state="checked"] .brutalist-switch-thumb {
+    transform: translateX(26px);
+  }
+
+  /* Brutalist Section Divider */
+  .brutalist-divider {
+    @apply my-12 border-t-4 border-black;
+  }
+
+  /* Brutalist Heading Styles */
+  .brutalist-h1 {
+    @apply font-mono text-5xl font-black uppercase tracking-tighter;
+    @apply leading-none;
+  }
+
+  .brutalist-h2 {
+    @apply font-mono text-3xl font-black uppercase tracking-tight;
+  }
+
+  .brutalist-h3 {
+    @apply font-mono text-xl font-bold uppercase tracking-wide;
+  }
+
+  /* Brutalist Alert */
+  .brutalist-alert {
+    @apply p-4;
+    @apply font-mono;
+    @apply border-4 border-black;
+    box-shadow: 4px 4px 0 0 hsl(var(--foreground));
+  }
+
+  .brutalist-alert-warning {
+    @apply bg-yellow-400 border-black;
+  }
+
+  .brutalist-alert-error {
+    @apply bg-red-500 text-white border-red-900;
+    box-shadow: 4px 4px 0 0 #7f1d1d;
+  }
+
+  .brutalist-alert-success {
+    @apply bg-green-400 border-black;
+  }
+}
+
+/* =============================================================================
+   UTILITY CLASSES
+   ============================================================================= */
+
+@layer utilities {
+  .shadow-brutal {
+    box-shadow: 4px 4px 0 0 hsl(var(--foreground));
+  }
+
+  .shadow-brutal-lg {
+    box-shadow: 8px 8px 0 0 hsl(var(--foreground));
+  }
+
+  .shadow-brutal-xl {
+    box-shadow: 12px 12px 0 0 hsl(var(--foreground));
+  }
+
+  .border-brutal {
+    @apply border-4 border-black;
+  }
+
+  .hover-brutal {
+    @apply transition-all duration-100;
+  }
+
+  .hover-brutal:hover {
+    box-shadow: 2px 2px 0 0 hsl(var(--foreground));
+    transform: translate(2px, 2px);
+  }
+}
