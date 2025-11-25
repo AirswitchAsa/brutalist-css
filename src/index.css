@@ -350,4 +350,28 @@
     box-shadow: 2px 2px 0 0 var(--primary);
     transform: translate(2px, 2px);
   }
+
+  /* Brutalist Scrollbar */
+  .brutalist-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .brutalist-scrollbar::-webkit-scrollbar-track {
+    background: var(--secondary);
+    border-left: 1px solid var(--primary);
+  }
+
+  .brutalist-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--primary);
+  }
+
+  .brutalist-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: var(--action);
+  }
+
+  /* Firefox scrollbar */
+  .brutalist-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) var(--secondary);
+  }
 }
