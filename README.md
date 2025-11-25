@@ -2,7 +2,7 @@
 
 A brutalist-inspired UI design system for React components.
 
-This is open-sourced by [Spicadust Inc.](https://www.spicadust.com) and the preview is hosted [here](https://www.spicadust.com/brutalist-css).
+This is open-sourced by [Spicadust Inc.](https://www.spicadust.com) and the preview is hosted [here](https://spicadust-web.s3.us-east-1.amazonaws.com/brutalist-css/index.html).
 
 Brutalist CSS is a side project out of our first product [Sphaere](https://dev.sphaere.app), a modern workspace to manage information retrieval and organization. Built with React, TypeScript, Vite, Tailwind CSS, and shadcn/ui primitives.
 
