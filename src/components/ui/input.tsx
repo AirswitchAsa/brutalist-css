@@ -9,11 +9,11 @@ export interface InputProps extends React.ComponentProps<"input"> {
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, onSubmit, ...props }, ref) => {
     return (
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-grid-1">
         <input
           type={type}
           className={cn(
-            "flex h-12 w-full rounded-full border-2 border-primary bg-secondary text-primary px-5 py-3 font-sans text-base placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-info disabled:border-info disabled:text-muted-foreground",
+            "flex h-12 w-full rounded-full border-2 border-primary bg-secondary text-primary px-grid-3 py-grid-1 font-sans text-base leading-normal tracking-normal placeholder:text-muted-foreground placeholder:tracking-wide focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-info disabled:border-info disabled:text-muted-foreground",
             className
           )}
           ref={ref}

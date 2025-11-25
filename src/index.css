@@ -10,6 +10,51 @@
 @layer base {
   :root {
     /* ===========================================
+       BASELINE GRID - 8px System
+       =========================================== */
+    --grid-unit: 8px;
+    --space-1: 8px;
+    --space-2: 16px;
+    --space-3: 24px;
+    --space-4: 32px;
+    --space-5: 40px;
+    --space-6: 48px;
+    --space-8: 64px;
+    --space-10: 80px;
+    --space-12: 96px;
+
+    /* ===========================================
+       TYPOGRAPHY - Tracking
+       =========================================== */
+    --tracking-tighter: -0.03em;
+    --tracking-tight: -0.01em;
+    --tracking-normal: 0;
+    --tracking-wide: 0.025em;
+    --tracking-wider: 0.05em;
+
+    /* ===========================================
+       TYPOGRAPHY - Line Heights (grid-aligned)
+       =========================================== */
+    --leading-none: 1;
+    --leading-tight: 1.25;      /* For headings */
+    --leading-snug: 1.375;      /* For subheadings */
+    --leading-normal: 1.5;      /* For body text - 16px * 1.5 = 24px (3 units) */
+    --leading-relaxed: 1.75;    /* For large body text */
+
+    /* ===========================================
+       TYPOGRAPHY - Font Sizes (grid-aligned)
+       =========================================== */
+    --text-xs: 10px;            /* Captions, badges */
+    --text-sm: 12px;            /* Labels, small text */
+    --text-base: 14px;          /* Body text */
+    --text-lg: 16px;            /* Large body */
+    --text-xl: 20px;            /* H4 */
+    --text-2xl: 24px;           /* H3 */
+    --text-3xl: 32px;           /* H2 */
+    --text-4xl: 40px;           /* H1 */
+    --text-5xl: 48px;           /* Display */
+
+    /* ===========================================
        BRUTALIST COLOR TOKENS - LIGHT THEME
        =========================================== */
 
@@ -100,8 +145,85 @@
     background-color: var(--background);
     color: var(--foreground);
     font-family: "Inter", system-ui, -apple-system, sans-serif;
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+    letter-spacing: var(--tracking-normal);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ===========================================
+     GLOBAL TYPOGRAPHY - Headings
+     =========================================== */
+  h1 {
+    font-size: var(--text-4xl);
+    font-weight: 900;
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tighter);
+  }
+
+  h2 {
+    font-size: var(--text-3xl);
+    font-weight: 800;
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tighter);
+  }
+
+  h3 {
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    line-height: var(--leading-snug);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  h4 {
+    font-size: var(--text-xl);
+    font-weight: 600;
+    line-height: var(--leading-snug);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  /* ===========================================
+     GLOBAL TYPOGRAPHY - Body & Labels
+     =========================================== */
+  p {
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+    letter-spacing: var(--tracking-normal);
+  }
+
+  small {
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+    letter-spacing: var(--tracking-wide);
+  }
+
+  label {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    line-height: var(--leading-normal);
+    letter-spacing: var(--tracking-wide);
+  }
+
+  /* Code/Mono text */
+  code, pre, kbd {
+    font-family: "JetBrains Mono", "Fira Code", monospace;
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+    letter-spacing: var(--tracking-normal);
+  }
+
+  /* ===========================================
+     TEXT SELECTION
+     =========================================== */
+  ::selection {
+    background-color: var(--info);
+    color: var(--info-foreground);
+  }
+
+  ::-moz-selection {
+    background-color: var(--info);
+    color: var(--info-foreground);
   }
 }
 
@@ -113,10 +235,14 @@
 
   /* Brutalist Button Styles */
   .brutalist-btn {
-    @apply relative inline-flex items-center justify-center px-6 py-3;
-    @apply font-sans font-bold uppercase tracking-wider;
+    @apply relative inline-flex items-center justify-center;
+    @apply font-sans font-semibold uppercase;
     @apply border-4 border-primary bg-secondary text-primary;
     @apply transition-all duration-100;
+    padding: var(--space-1) var(--space-3);
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+    letter-spacing: var(--tracking-wide);
     box-shadow: 4px 4px 0 0 var(--primary);
   }
 
@@ -147,10 +273,14 @@
 
   /* Brutalist Input Styles */
   .brutalist-input {
-    @apply w-full px-4 py-3;
-    @apply font-sans text-base;
+    @apply w-full;
+    @apply font-sans;
     @apply border-4 border-primary bg-secondary text-primary;
     @apply focus:outline-none;
+    padding: var(--space-1) var(--space-2);
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+    letter-spacing: var(--tracking-normal);
     box-shadow: 4px 4px 0 0 var(--primary);
   }
 
@@ -160,40 +290,55 @@
   }
 
   .brutalist-input::placeholder {
-    @apply text-muted-foreground uppercase tracking-wide;
+    @apply text-muted-foreground uppercase;
+    letter-spacing: var(--tracking-wide);
   }
 
   /* Brutalist Card Styles */
   .brutalist-card {
-    @apply p-6;
     @apply border-4 border-primary bg-secondary;
+    padding: var(--space-3);
     box-shadow: 8px 8px 0 0 var(--primary);
   }
 
   .brutalist-card-header {
-    @apply mb-4 pb-4 border-b-4 border-primary;
+    @apply border-b-4 border-primary;
+    margin-bottom: var(--space-2);
+    padding-bottom: var(--space-2);
   }
 
   .brutalist-card-title {
-    @apply font-sans text-2xl font-black uppercase tracking-tight text-primary;
+    @apply font-sans font-black uppercase text-primary;
+    font-size: var(--text-2xl);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tighter);
   }
 
   .brutalist-card-description {
-    @apply mt-2 font-sans text-sm text-muted-foreground uppercase tracking-wide;
+    @apply font-sans text-muted-foreground uppercase;
+    margin-top: var(--space-1);
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+    letter-spacing: var(--tracking-wide);
   }
 
   /* Brutalist Terminal/Code Block */
   .brutalist-terminal {
-    @apply p-6;
-    @apply font-mono text-sm;
+    @apply font-mono;
     @apply border-4 border-primary;
+    padding: var(--space-3);
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
     background-color: var(--primary);
     color: var(--action);
     box-shadow: 8px 8px 0 0 var(--action);
   }
 
   .brutalist-terminal-header {
-    @apply flex items-center gap-2 mb-4 pb-2;
+    @apply flex items-center;
+    gap: var(--space-1);
+    margin-bottom: var(--space-2);
+    padding-bottom: var(--space-1);
     border-bottom: 1px solid var(--action);
   }
 
@@ -203,14 +348,21 @@
 
   /* Brutalist Label */
   .brutalist-label {
-    @apply font-sans text-sm font-bold uppercase tracking-wider text-primary;
+    @apply font-sans font-semibold uppercase text-primary;
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+    letter-spacing: var(--tracking-wider);
   }
 
   /* Brutalist Badge */
   .brutalist-badge {
-    @apply inline-flex items-center px-3 py-1;
-    @apply font-sans text-xs font-bold uppercase tracking-wider;
+    @apply inline-flex items-center;
+    @apply font-sans font-bold uppercase;
     @apply border-2 border-primary bg-secondary text-primary;
+    padding: calc(var(--space-1) / 2) var(--space-1);
+    font-size: var(--text-xs);
+    line-height: var(--leading-normal);
+    letter-spacing: var(--tracking-wider);
     box-shadow: 2px 2px 0 0 var(--primary);
   }
 
@@ -226,8 +378,9 @@
 
   .brutalist-dialog-content {
     @apply fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2;
-    @apply w-full max-w-lg p-8;
+    @apply w-full max-w-lg;
     @apply border-4 border-primary bg-secondary;
+    padding: var(--space-4);
     box-shadow: 12px 12px 0 0 var(--primary);
   }
 
@@ -237,20 +390,25 @@
   }
 
   .brutalist-tabs-trigger {
-    @apply flex-1 px-6 py-3;
-    @apply font-sans font-bold uppercase tracking-wider;
+    @apply flex-1;
+    @apply font-sans font-semibold uppercase;
     @apply border-r-4 border-primary last:border-r-0;
     @apply bg-info text-primary;
     @apply transition-colors;
+    padding: var(--space-1) var(--space-3);
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+    letter-spacing: var(--tracking-wide);
   }
 
   .brutalist-tabs-trigger[data-state="active"] {
     @apply bg-primary text-primary-foreground;
+    font-weight: 700;
   }
 
   .brutalist-tabs-content {
-    @apply p-6;
     @apply border-4 border-primary;
+    padding: var(--space-3);
   }
 
   /* Brutalist Switch */
@@ -277,28 +435,40 @@
 
   /* Brutalist Section Divider */
   .brutalist-divider {
-    @apply my-12 border-t-4 border-primary;
+    @apply border-t-4 border-primary;
+    margin-top: var(--space-6);
+    margin-bottom: var(--space-6);
   }
 
   /* Brutalist Heading Styles */
   .brutalist-h1 {
-    @apply font-sans text-5xl font-black uppercase tracking-tighter;
-    @apply leading-none text-primary;
+    @apply font-sans font-black uppercase text-primary;
+    font-size: var(--text-5xl);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tighter);
   }
 
   .brutalist-h2 {
-    @apply font-sans text-3xl font-black uppercase tracking-tight text-primary;
+    @apply font-sans font-black uppercase text-primary;
+    font-size: var(--text-3xl);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tighter);
   }
 
   .brutalist-h3 {
-    @apply font-sans text-xl font-bold uppercase tracking-wide text-primary;
+    @apply font-sans font-bold uppercase text-primary;
+    font-size: var(--text-xl);
+    line-height: var(--leading-snug);
+    letter-spacing: var(--tracking-tight);
   }
 
   /* Brutalist Alert */
   .brutalist-alert {
-    @apply p-4;
     @apply font-sans;
     @apply border-4 border-primary;
+    padding: var(--space-2);
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
     box-shadow: 4px 4px 0 0 var(--primary);
   }
 
