@@ -1,18 +1,34 @@
 import * as React from "react"
+import { ArrowRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-const Input = React.forwardRef<HTMLInputElement, React.ComponentProps<"input">>(
-  ({ className, type, ...props }, ref) => {
+export interface InputProps extends React.ComponentProps<"input"> {
+  onSubmit?: () => void
+}
+
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  ({ className, type, onSubmit, ...props }, ref) => {
     return (
-      <input
-        type={type}
-        className={cn(
-          "flex h-12 w-full border-4 border-black bg-white px-4 py-3 font-mono text-base shadow-[4px_4px_0_0_black] transition-all duration-100 file:border-0 file:bg-transparent file:font-mono file:text-sm file:font-bold file:uppercase placeholder:text-gray-500 placeholder:uppercase placeholder:tracking-wide focus:shadow-[2px_2px_0_0_black] focus:translate-x-[2px] focus:translate-y-[2px] focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
-          className
-        )}
-        ref={ref}
-        {...props}
-      />
+      <div className="flex items-center gap-2">
+        <input
+          type={type}
+          className={cn(
+            "flex h-12 w-full rounded-full border-2 border-primary bg-secondary text-primary px-5 py-3 font-sans text-base placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-info disabled:border-info disabled:text-muted-foreground",
+            className
+          )}
+          ref={ref}
+          {...props}
+        />
+        <button
+          type="button"
+          onClick={onSubmit}
+          disabled={props.disabled}
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary text-secondary disabled:bg-info disabled:cursor-not-allowed"
+          aria-label="Submit"
+        >
+          <ArrowRight className="h-5 w-5" />
+        </button>
+      </div>
     )
   }
 )

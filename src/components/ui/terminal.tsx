@@ -10,16 +10,16 @@ const Terminal = React.forwardRef<HTMLDivElement, TerminalProps>(
     <div
       ref={ref}
       className={cn(
-        "border-4 border-black bg-black text-green-400 font-mono text-sm shadow-[8px_8px_0_0_#166534]",
+        "border-4 border-primary bg-primary text-action font-mono text-sm",
         className
       )}
       {...props}
     >
-      <div className="flex items-center gap-2 px-4 py-2 border-b border-green-800">
-        <div className="w-3 h-3 rounded-full bg-red-500" />
-        <div className="w-3 h-3 rounded-full bg-yellow-500" />
-        <div className="w-3 h-3 rounded-full bg-green-500" />
-        <span className="ml-2 text-xs text-green-600 uppercase tracking-wider">
+      <div className="flex items-center gap-2 px-4 py-2 border-b border-action/30">
+        <div className="w-3 h-3 rounded-full bg-destructive" />
+        <div className="w-3 h-3 rounded-full bg-info" />
+        <div className="w-3 h-3 rounded-full bg-action" />
+        <span className="ml-2 text-xs text-action/60">
           {title}
         </span>
       </div>
@@ -40,7 +40,7 @@ const TerminalLine = React.forwardRef<
     className={cn("flex gap-2", className)}
     {...props}
   >
-    <span className="text-green-600 select-none">{prompt}</span>
+    <span className="text-action/60 select-none">{prompt}</span>
     <span>{children}</span>
   </div>
 ))
@@ -52,7 +52,7 @@ const TerminalOutput = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("text-gray-400 ml-4", className)}
+    className={cn("text-primary-foreground/60 ml-4", className)}
     {...props}
   />
 ))
